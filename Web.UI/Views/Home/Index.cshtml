@@ -1,0 +1,33 @@
+﻿@model Web.UI.Models.ConvertNumberViewModel
+
+@{
+    ViewBag.Title = "Number To Words Converter";
+}
+
+<div class="jumbotron">
+
+    @using (@Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="form-group">
+            <p>Please enter your name and amount that you want to convert</p>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Name)
+            @Html.TextBoxFor(Model => Model.Name, new { Class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Amount)
+            @Html.TextBoxFor(Model => Model.Amount, new { Class = "form-control" })
+            @Html.ValidationMessageFor(Model => Model.Amount, String.Empty , new {Class = "error-message" })
+        </div>
+        <div class="form-group">
+            @if (!String.IsNullOrEmpty(Model.Output))
+            {
+                <p>@Model.Output</p>
+            }
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn-primary" value="Convert" />
+        </div>
+    }
+</div>
